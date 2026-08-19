@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>FeeValt — Stop Paying For What You Forgot</title>
 <meta name="description" content="FeeValt tracks your subscriptions and recharge plans, catches what overlaps, and helps you stop paying twice. Privacy-first, offline-first. Coming soon to India.">
+<link rel="icon" type="image/png" href="assets/logo-icon.png">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -95,10 +96,12 @@
   .brand-mark{
     width:32px; height:32px;
     border-radius:9px;
-    background:var(--ink);
-    display:flex; align-items:center; justify-content:center;
-    color:var(--paper);
-    font-size:16px;
+    overflow:hidden;
+    display:block;
+    flex-shrink:0;
+  }
+  .brand-mark img{
+    width:100%; height:100%; object-fit:cover;
   }
   .nav-cta{
     background:var(--ink);
@@ -394,7 +397,7 @@
 <nav>
   <div class="wrap">
     <div class="brand">
-      <span class="brand-mark">F</span>
+      <span class="brand-mark"><img src="assets/logo-icon.png" alt="FeeValt logo"></span>
       FeeValt
     </div>
     <a href="#waitlist" class="nav-cta">Join waitlist</a>
@@ -445,7 +448,7 @@
   </div>
 </section>
 
-<section class="feature reverse reveal">
+<section class="feature reveal">
   <div class="wrap">
     <div class="text-col">
       <span class="feature-tag">Less typing</span>
@@ -518,7 +521,7 @@
 <footer>
   <div class="wrap">
     <div class="brand">
-      <span class="brand-mark">F</span>
+      <span class="brand-mark"><img src="assets/logo-icon.png" alt="FeeValt logo"></span>
       FeeValt
     </div>
     <div class="footer-links">
