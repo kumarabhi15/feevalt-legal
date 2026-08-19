@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FeeValt — Stop Paying For What You Forgot</title>
+<meta name="description" content="FeeValt tracks your subscriptions and recharge plans, catches what overlaps, and helps you stop paying twice. Privacy-first, offline-first. Coming soon to India.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --bg:#ECECEE;
+    --bg-warm:#E7E5E1;
+    --card:#0D0D11;
+    --card-2:#15151B;
+    --card-3:#1B1D28;
+    --line:rgba(255,255,255,0.08);
+    --line-light:rgba(13,13,17,0.08);
+    --gold:#C9A063;
+    --red:#E4483C;
+    --ink:#0D0D11;
+    --ink-soft:#4A4A52;
+    --paper:#F5F5F2;
+    --paper-muted:#9C9CA3;
+    --radius-lg:28px;
+    --radius-md:18px;
+    --shadow-card:0 20px 50px -20px rgba(13,13,17,0.35);
+    --shadow-phone:0 40px 80px -30px rgba(13,13,17,0.45);
+  }
+
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Inter', -apple-system, sans-serif;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  h1,h2,h3, .display{
+    font-family:'Archivo', sans-serif;
+    letter-spacing:-0.02em;
+    color:var(--ink);
+  }
+  a{color:inherit; text-decoration:none;}
+  img{max-width:100%; display:block;}
+
+  .wrap{
+    max-width:1180px;
+    margin:0 auto;
+    padding:0 28px;
+  }
+
+  .eyebrow{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-family:'Inter', sans-serif;
+    font-weight:600;
+    font-size:13px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--gold);
+  }
+  .eyebrow::before{
+    content:'';
+    width:3px;
+    height:15px;
+    background:var(--red);
+    border-radius:2px;
+    display:inline-block;
+  }
+  .eyebrow.on-dark{color:var(--gold);}
+
+  /* NAV */
+  nav{
+    position:sticky; top:0; z-index:40;
+    background:rgba(236,236,238,0.82);
+    backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--line-light);
+  }
+  nav .wrap{
+    display:flex; align-items:center; justify-content:space-between;
+    height:76px;
+  }
+  .brand{
+    display:flex; align-items:center; gap:10px;
+    font-family:'Archivo', sans-serif;
+    font-weight:800;
+    font-size:20px;
+  }
+  .brand-mark{
+    width:32px; height:32px;
+    border-radius:9px;
+    background:var(--ink);
+    display:flex; align-items:center; justify-content:center;
+    color:var(--paper);
+    font-size:16px;
+  }
+  .nav-cta{
+    background:var(--ink);
+    color:var(--paper);
+    padding:11px 22px;
+    border-radius:100px;
+    font-weight:600;
+    font-size:14.5px;
+    transition:transform .2s ease, background .2s ease;
+  }
+  .nav-cta:hover{ transform:translateY(-1px); background:#000; }
+
+  /* HERO */
+  .hero{
+    padding:90px 0 70px;
+    position:relative;
+  }
+  .hero .wrap{
+    display:grid;
+    grid-template-columns:1.05fr 0.95fr;
+    gap:56px;
+    align-items:center;
+  }
+  .hero-status{
+    display:inline-flex; align-items:center; gap:8px;
+    background:var(--card);
+    color:var(--paper);
+    padding:8px 16px 8px 12px;
+    border-radius:100px;
+    font-size:13px;
+    font-weight:600;
+    margin-bottom:26px;
+  }
+  .hero-status .dot{
+    width:7px; height:7px; border-radius:50%;
+    background:var(--gold);
+    box-shadow:0 0 0 4px rgba(201,160,99,0.25);
+  }
+  .hero h1{
+    font-size:56px;
+    line-height:1.03;
+    font-weight:800;
+    margin-bottom:22px;
+  }
+  .hero h1 em{
+    font-style:normal;
+    color:var(--red);
+  }
+  .hero p.lede{
+    font-size:18px;
+    line-height:1.55;
+    color:var(--ink-soft);
+    max-width:460px;
+    margin-bottom:34px;
+  }
+
+  /* waitlist form */
+  .waitlist-form{
+    display:flex;
+    gap:10px;
+    max-width:440px;
+    margin-bottom:14px;
+  }
+  .waitlist-form input[type=email]{
+    flex:1;
+    padding:16px 18px;
+    border-radius:100px;
+    border:1px solid var(--line-light);
+    background:#fff;
+    font-family:'Inter',sans-serif;
+    font-size:15px;
+    color:var(--ink);
+    outline:none;
+    transition:border-color .2s ease, box-shadow .2s ease;
+  }
+  .waitlist-form input[type=email]:focus{
+    border-color:var(--ink);
+    box-shadow:0 0 0 3px rgba(13,13,17,0.08);
+  }
+  .btn-primary{
+    background:var(--ink);
+    color:var(--paper);
+    border:none;
+    padding:16px 26px;
+    border-radius:100px;
+    font-family:'Inter',sans-serif;
+    font-weight:600;
+    font-size:15px;
+    cursor:pointer;
+    white-space:nowrap;
+    transition:transform .2s ease, background .2s ease;
+  }
+  .btn-primary:hover{ transform:translateY(-1px); background:#000; }
+  .form-note{ font-size:13px; color:var(--paper-muted); }
+  .form-success{
+    display:none;
+    font-size:14.5px;
+    font-weight:600;
+    color:var(--red);
+    padding:14px 0 0;
+  }
+
+  /* phone frame */
+  .phone-stage{
+    position:relative;
+    display:flex;
+    justify-content:center;
+  }
+  .phone{
+    width:290px;
+    background:#000;
+    border-radius:38px;
+    padding:10px;
+    box-shadow:var(--shadow-phone);
+    transform:rotate(2deg);
+    transition:transform .4s ease;
+  }
+  .phone:hover{ transform:rotate(0deg) translateY(-4px); }
+  .phone-screen{
+    border-radius:29px;
+    overflow:hidden;
+    background:var(--card);
+    aspect-ratio:9/19.5;
+  }
+  .phone-screen img{
+    width:100%; height:100%; object-fit:cover; object-position:top;
+  }
+  .phone-glow{
+    position:absolute;
+    width:340px; height:340px;
+    background:radial-gradient(circle, rgba(201,160,99,0.18), transparent 70%);
+    top:50%; left:50%;
+    transform:translate(-50%,-50%);
+    z-index:-1;
+    filter:blur(10px);
+  }
+
+  /* FEATURE SECTIONS */
+  .feature{
+    padding:64px 0;
+    border-top:1px solid var(--line-light);
+  }
+  .feature .wrap{
+    display:grid;
+    grid-template-columns:0.95fr 1.05fr;
+    gap:64px;
+    align-items:center;
+  }
+  .feature.reverse .wrap{
+    grid-template-columns:1.05fr 0.95fr;
+  }
+  .feature.reverse .phone-col{ order:2; }
+  .feature.reverse .text-col{ order:1; }
+
+  .feature h2{
+    font-size:34px;
+    line-height:1.12;
+    font-weight:700;
+    margin:16px 0 18px;
+  }
+  .feature p{
+    font-size:16.5px;
+    line-height:1.6;
+    color:var(--ink-soft);
+    max-width:440px;
+    margin-bottom:22px;
+  }
+  .feature-tag{
+    display:inline-block;
+    font-size:13px;
+    font-weight:600;
+    color:var(--red);
+    background:rgba(228,72,60,0.09);
+    padding:6px 13px;
+    border-radius:100px;
+    margin-bottom:6px;
+  }
+
+  .feature .phone-stage .phone{
+    width:250px;
+    transform:rotate(0deg);
+  }
+
+  /* PRIVACY STRIP */
+  .privacy{
+    background:var(--card);
+    color:var(--paper);
+    padding:70px 0;
+  }
+  .privacy .wrap{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:40px;
+  }
+  .privacy-head{
+    grid-column:1 / -1;
+    margin-bottom:10px;
+  }
+  .privacy-head h2{
+    color:var(--paper);
+    font-size:32px;
+    max-width:520px;
+  }
+  .privacy-item{
+    border-top:1px solid var(--line);
+    padding-top:20px;
+  }
+  .privacy-item h3{
+    color:var(--paper);
+    font-size:17px;
+    font-weight:600;
+    margin-bottom:8px;
+  }
+  .privacy-item p{
+    color:#B8B8C0;
+    font-size:14.5px;
+    line-height:1.55;
+  }
+
+  /* CTA */
+  .cta{
+    padding:100px 0;
+    text-align:center;
+  }
+  .cta h2{
+    font-size:38px;
+    max-width:600px;
+    margin:0 auto 16px;
+    line-height:1.1;
+  }
+  .cta p.lede{
+    max-width:480px;
+    margin:0 auto 34px;
+    color:var(--ink-soft);
+    font-size:16.5px;
+  }
+  .cta .waitlist-form{ margin:0 auto 14px; }
+  .cta .form-note{ text-align:center; }
+
+  /* FOOTER */
+  footer{
+    border-top:1px solid var(--line-light);
+    padding:36px 0;
+  }
+  footer .wrap{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:16px;
+  }
+  .footer-links{
+    display:flex;
+    gap:24px;
+    font-size:14px;
+    color:var(--ink-soft);
+  }
+  .footer-links a:hover{ color:var(--ink); }
+  .footer-copy{
+    font-size:13.5px;
+    color:var(--paper-muted);
+  }
+
+  /* reveal-on-scroll */
+  .reveal{
+    opacity:0;
+    transform:translateY(24px);
+    transition:opacity .7s ease, transform .7s ease;
+  }
+  .reveal.in{ opacity:1; transform:translateY(0); }
+
+  @media (max-width:900px){
+    .hero .wrap, .feature .wrap{ grid-template-columns:1fr; }
+    .feature.reverse .phone-col{ order:1; }
+    .feature.reverse .text-col{ order:2; }
+    .hero h1{ font-size:38px; }
+    .feature h2{ font-size:27px; }
+    .privacy .wrap{ grid-template-columns:1fr; }
+    .waitlist-form{ flex-direction:column; }
+    .btn-primary{ width:100%; }
+    footer .wrap{ flex-direction:column; align-items:flex-start; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    .reveal{ opacity:1; transform:none; transition:none; }
+    .phone{ transition:none; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="brand">
+      <span class="brand-mark">F</span>
+      FeeValt
+    </div>
+    <a href="#waitlist" class="nav-cta">Join waitlist</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="phone-glow"></div>
+  <div class="wrap">
+    <div class="hero-text">
+      <div class="hero-status"><span class="dot"></span> Coming soon to India</div>
+      <h1>Stop Paying For<br>What You <em>Forgot</em></h1>
+      <p class="lede">See everything you're paying for. Stop paying twice. Cancel what you don't use — subscriptions and recharge plans, in one place, entirely on your phone.</p>
+
+      <form class="waitlist-form" id="waitlistForm" action="#" method="POST">
+        <input type="email" name="email" placeholder="you@email.com" required aria-label="Email address">
+        <button type="submit" class="btn-primary">Join waitlist</button>
+      </form>
+      <p class="form-note">No spam. One email when FeeValt is live.</p>
+      <p class="form-success" id="formSuccess">You're on the list. We'll email you at launch.</p>
+    </div>
+
+    <div class="phone-stage">
+      <div class="phone">
+        <div class="phone-screen">
+          <img src="assets/screen-home.jpg" alt="FeeValt home screen showing monthly spend and upcoming renewals">
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="feature reveal">
+  <div class="wrap">
+    <div class="text-col">
+      <span class="feature-tag">The killer feature</span>
+      <div class="eyebrow">Bundle overlap</div>
+      <h2>You might already be paying twice.</h2>
+      <p>Your Airtel, Jio, or Vi plan may already include Netflix or Hotstar — for free. FeeValt checks your recharge plan against your subscriptions and flags exactly what's redundant, down to the rupee you'd save by cancelling.</p>
+    </div>
+    <div class="phone-col phone-stage">
+      <div class="phone">
+        <div class="phone-screen">
+          <img src="assets/screen-insights.jpg" alt="FeeValt spending insights screen showing a redundant Netflix subscription flagged against an Airtel plan">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="feature reverse reveal">
+  <div class="wrap">
+    <div class="text-col">
+      <span class="feature-tag">Less typing</span>
+      <div class="eyebrow">Invoice scan</div>
+      <h2>Snap a photo. We do the typing.</h2>
+      <p>Upload an invoice PDF and FeeValt reads the name, amount, and billing cycle in seconds — powered by Gemini. Review, adjust anything it missed, save. No more digging through email for renewal dates.</p>
+    </div>
+    <div class="phone-col phone-stage">
+      <div class="phone">
+        <div class="phone-screen">
+          <img src="assets/screen-add-subscription.jpg" alt="FeeValt new subscription screen with invoice scanning option">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="feature reveal">
+  <div class="wrap">
+    <div class="text-col">
+      <span class="feature-tag">Beyond OTT</span>
+      <div class="eyebrow">Recharge & plans</div>
+      <h2>Your telco plan, tracked like everything else.</h2>
+      <p>Airtel, Jio, Vi — prepaid, postpaid, broadband. FeeValt tracks your recharge plans alongside your subscriptions, so your entire monthly spend lives in one number, not scattered across apps.</p>
+    </div>
+    <div class="phone-col phone-stage">
+      <div class="phone">
+        <div class="phone-screen">
+          <img src="assets/screen-add-plan.jpg" alt="FeeValt add a recharge or plan screen with Airtel, Jio, and Vi operator selection">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="privacy reveal">
+  <div class="wrap">
+    <div class="privacy-head">
+      <div class="eyebrow on-dark">Privacy, by design</div>
+      <h2>Your data stays right here. Always.</h2>
+    </div>
+    <div class="privacy-item">
+      <h3>No bank linking</h3>
+      <p>FeeValt never asks for your bank or card details. You tell it what you pay — nothing is pulled automatically.</p>
+    </div>
+    <div class="privacy-item">
+      <h3>No account required</h3>
+      <p>Nothing leaves this phone unless you tell it to. No sign-up, no cloud sync by default.</p>
+    </div>
+    <div class="privacy-item">
+      <h3>Free. Forever. No subscription.</h3>
+      <p>A one-time payment unlocks everything. We're not going to charge you monthly to track your monthly charges.</p>
+    </div>
+  </div>
+</section>
+
+<section class="cta reveal" id="waitlist">
+  <div class="wrap">
+    <h2>Be first to know when FeeValt launches.</h2>
+    <p class="lede">Join the waitlist — we'll send one email the day it's live on the Play Store.</p>
+    <form class="waitlist-form" id="waitlistForm2" action="#" method="POST">
+      <input type="email" name="email" placeholder="you@email.com" required aria-label="Email address">
+      <button type="submit" class="btn-primary">Join waitlist</button>
+    </form>
+    <p class="form-note">No spam. One email when FeeValt is live.</p>
+    <p class="form-success" id="formSuccess2">You're on the list. We'll email you at launch.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="brand">
+      <span class="brand-mark">F</span>
+      FeeValt
+    </div>
+    <div class="footer-links">
+      <a href="privacy-policy.html">Privacy Policy</a>
+      <a href="terms.html">Terms of Use</a>
+    </div>
+    <div class="footer-copy">&copy; 2026 FeeValt. Made in India.</div>
+  </div>
+</footer>
+
+<script>
+  // Scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.15 });
+  revealEls.forEach(el => io.observe(el));
+
+  // Waitlist forms — placeholder submit handling.
+  // REPLACE "action" attribute on both <form> tags above with your Formspree
+  // endpoint (https://formspree.io) once you've created one — then this
+  // fetch-based handler will actually deliver emails instead of just
+  // showing the success message.
+  function wireForm(formId, successId){
+    const form = document.getElementById(formId);
+    const success = document.getElementById(successId);
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      // TODO: once Formspree endpoint is set in the form's action attribute,
+      // uncomment the fetch below to actually send the email.
+      // fetch(form.action, { method:'POST', body:new FormData(form), headers:{Accept:'application/json'} });
+      form.style.display = 'none';
+      success.style.display = 'block';
+    });
+  }
+  wireForm('waitlistForm', 'formSuccess');
+  wireForm('waitlistForm2', 'formSuccess2');
+</script>
+
+</body>
+</html>
