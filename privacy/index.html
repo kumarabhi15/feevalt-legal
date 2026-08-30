@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy — FeeValt</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0d0d0d;
+      --surface: #141414;
+      --border: #242424;
+      --ink: #f0ede8;
+      --ink2: #b0aca6;
+      --ink3: #6e6a65;
+      --accent: #d4572a;
+      --accent-soft: rgba(212, 87, 42, 0.12);
+      --radius: 12px;
+      --max: 740px;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 16px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Top bar ── */
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(13,13,13,0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 24px;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .topbar-wordmark {
+      font-weight: 700;
+      font-size: 17px;
+      letter-spacing: -0.3px;
+      color: var(--ink);
+      text-decoration: none;
+    }
+    .topbar-back {
+      font-size: 13px;
+      color: var(--ink3);
+      text-decoration: none;
+    }
+    .topbar-back:hover { color: var(--ink2); }
+
+    /* ── Layout ── */
+    .page {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 56px 24px 96px;
+    }
+
+    /* ── Hero ── */
+    .hero {
+      margin-bottom: 48px;
+    }
+    .hero-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.4px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+    .hero-title {
+      font-size: 34px;
+      font-weight: 800;
+      letter-spacing: -0.8px;
+      line-height: 1.15;
+      color: var(--ink);
+      margin-bottom: 16px;
+    }
+    .hero-meta {
+      font-size: 14px;
+      color: var(--ink3);
+    }
+
+    /* ── Callout box ── */
+    .callout {
+      background: var(--accent-soft);
+      border: 1px solid rgba(212,87,42,0.25);
+      border-radius: var(--radius);
+      padding: 20px 24px;
+      margin-bottom: 48px;
+    }
+    .callout p {
+      font-size: 15px;
+      color: var(--ink2);
+      margin: 0;
+    }
+    .callout strong {
+      color: var(--ink);
+    }
+
+    /* ── Sections ── */
+    section {
+      margin-bottom: 48px;
+    }
+    h2 {
+      font-size: 19px;
+      font-weight: 700;
+      letter-spacing: -0.3px;
+      color: var(--ink);
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+    h3 {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--ink);
+      margin: 24px 0 8px;
+    }
+    p {
+      color: var(--ink2);
+      margin-bottom: 14px;
+    }
+    p:last-child { margin-bottom: 0; }
+
+    ul, ol {
+      padding-left: 20px;
+      color: var(--ink2);
+      margin-bottom: 14px;
+    }
+    li { margin-bottom: 6px; }
+    li:last-child { margin-bottom: 0; }
+
+    strong { color: var(--ink); font-weight: 600; }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* ── Data flow cards ── */
+    .flow-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px 24px;
+      margin-bottom: 12px;
+    }
+    .flow-card-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .badge {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      padding: 2px 7px;
+      border-radius: 4px;
+    }
+    .badge-opt { background: rgba(34,197,94,0.15); color: #4ade80; }
+    .badge-auto { background: rgba(250,204,21,0.12); color: #fbbf24; }
+    .badge-inactive { background: rgba(255,255,255,0.07); color: var(--ink3); }
+    .flow-card p { font-size: 14px; margin: 0; }
+
+    /* ── Divider ── */
+    .divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 0 0 48px;
+    }
+
+    /* ── Footer ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding-top: 32px;
+      text-align: center;
+    }
+    footer p {
+      font-size: 13px;
+      color: var(--ink3);
+      margin-bottom: 8px;
+    }
+    footer a { color: var(--ink3); }
+    footer a:hover { color: var(--accent); }
+  </style>
+</head>
+<body>
+
+<div class="topbar">
+  <a class="topbar-wordmark" href="https://feevalt.com">FeeValt</a>
+  <a class="topbar-back" href="https://feevalt.com">← Back to home</a>
+</div>
+
+<main class="page">
+
+  <!-- Hero -->
+  <div class="hero">
+    <div class="hero-label">Legal</div>
+    <h1 class="hero-title">Privacy Policy</h1>
+    <p class="hero-meta">Effective date: 30 August 2026 &nbsp;·&nbsp; Last updated: 30 August 2026</p>
+  </div>
+
+  <!-- Core commitment callout -->
+  <div class="callout">
+    <p><strong>The short version:</strong> FeeValt is a privacy-first app. Your subscription and plan data never leaves your device — there is no FeeValt server, no account, and no cloud sync. The only time any of your content reaches an external service is when <em>you</em> explicitly choose to scan an invoice.</p>
+  </div>
+
+  <!-- 1. Who we are -->
+  <section>
+    <h2>1. Who operates FeeValt</h2>
+    <p>FeeValt is developed and operated by <strong>Abhishek Kumar</strong>, an individual software developer ("we", "us", or "our"). FeeValt is an Android application for tracking subscriptions and telecom recharge plans.</p>
+    <p>For any privacy-related questions, contact us at <a href="mailto:care@feevalt.com">care@feevalt.com</a>.</p>
+  </section>
+
+  <!-- 2. What data we collect -->
+  <section>
+    <h2>2. What data FeeValt collects</h2>
+
+    <h3>Data stored only on your device</h3>
+    <p>All of the following is stored exclusively in an on-device local database. It never leaves your phone unless you choose to export or back it up yourself.</p>
+    <ul>
+      <li>Subscription details: service name, amount, currency, billing cycle, renewal date, category</li>
+      <li>Recharge and plan details: provider (Airtel, Jio, Vi), plan type, activation date, included OTT benefits</li>
+      <li>App settings: default currency, reminder time, selected telecom circle</li>
+      <li>Savings history: a record of services you've confirmed cancelling and the estimated savings</li>
+      <li>Historical monthly spend totals</li>
+      <li>Lapsed-plan records: plans removed without renewal</li>
+    </ul>
+
+    <h3>Data we do not collect</h3>
+    <p>FeeValt <strong>never</strong> collects:</p>
+    <ul>
+      <li>Bank, card, or UPI details of any kind</li>
+      <li>SMS messages or notification content (permanently excluded by design)</li>
+      <li>Your phone number, email address, or any account identifier</li>
+      <li>Location data</li>
+      <li>Device contacts or call logs</li>
+      <li>Any advertising or analytics identifiers</li>
+    </ul>
+
+    <h3>Website (feevalt.com)</h3>
+    <p>The FeeValt website is a static page hosted on GitHub Pages. We do not run analytics or tracking scripts on it. Standard server logs (IP address, page requested, timestamp) may be retained by GitHub's infrastructure under GitHub's own privacy policy, outside our control.</p>
+    <p>A waitlist signup form is planned for the website. When activated, it will be powered by Formspree (a third-party form processor) and will collect only your email address for the purpose of notifying you at launch. This section will be updated with the effective date when that form goes live. Until then, no email addresses are collected via the website.</p>
+  </section>
+
+  <!-- 3. Third-party data flows -->
+  <section>
+    <h2>3. When data leaves your device</h2>
+    <p>There are only two circumstances in which any data is transmitted from your device, and neither involves FeeValt's own servers (because no FeeValt servers exist).</p>
+
+    <div class="flow-card">
+      <div class="flow-card-title">
+        Google Gemini API (invoice scanning)
+        <span class="badge badge-opt">Opt-in only</span>
+      </div>
+      <p>If you tap "Scan an invoice", the PDF you select is sent to Google's Gemini AI service (<code>gemini-2.5-flash</code>) to extract the service name, amount, currency, billing cycle, and renewal date. Nothing else — no other subscription data, no device identifier — is included in the request. This happens only when you explicitly trigger it; FeeValt never sends invoices automatically or in the background. Google's use of data sent to Gemini is governed by <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google's Privacy Policy</a>.</p>
+    </div>
+
+    <div class="flow-card">
+      <div class="flow-card-title">
+        Brand logo lookups
+        <span class="badge badge-auto">Automatic, anonymous</span>
+      </div>
+      <p>When you add a subscription, FeeValt makes a network request to fetch the service's logo using only the service's domain name. No personal data is included. This is a read-only lookup and the result is cached on-device to minimise future requests.</p>
+    </div>
+
+    <div class="flow-card">
+      <div class="flow-card-title">
+        Firebase Crashlytics
+        <span class="badge badge-inactive">Currently inactive</span>
+      </div>
+      <p>FeeValt includes Firebase Crashlytics in its code, but it is <strong>not currently active</strong>. No crash data is being collected or transmitted. If crash reporting is enabled in a future update, this policy will be updated in advance and it will be disclosed in the app's release notes.</p>
+    </div>
+
+    <div class="flow-card">
+      <div class="flow-card-title">
+        Android Auto Backup
+        <span class="badge badge-auto">OS-level, if enabled by you</span>
+      </div>
+      <p>Android's built-in backup system may copy your app's local data to your Google account if you have device backup enabled. This is controlled entirely by Android and your Google account settings — FeeValt does not initiate or control this process. Refer to <a href="https://support.google.com/android/answer/2819582" target="_blank" rel="noopener">Google's backup documentation</a> for details.</p>
+    </div>
+  </section>
+
+  <!-- 4. Permissions -->
+  <section>
+    <h2>4. App permissions</h2>
+    <p>FeeValt requests the following Android permissions and only for the stated purpose:</p>
+    <ul>
+      <li><strong>Notifications</strong> — to deliver renewal and expiry reminders you set up</li>
+      <li><strong>Exact alarms</strong> — so reminders fire at the precise time you chose, not at an approximate window</li>
+      <li><strong>Boot receiver</strong> — so scheduled reminders survive a device reboot</li>
+      <li><strong>Internet</strong> — for brand-logo lookups and, when you use it, invoice scanning via Gemini</li>
+      <li><strong>Ignore battery optimisations</strong> — optional, user-triggered from Settings, needed on some Android OEMs (Xiaomi, Realme, Oppo, Vivo) that aggressively kill background processes and would otherwise block reminders</li>
+    </ul>
+    <p>FeeValt does not request location, camera, microphone, contacts, or broad storage permissions.</p>
+  </section>
+
+  <!-- 5. Bundle overlap feature -->
+  <section>
+    <h2>5. How the bundle-overlap feature works</h2>
+    <p>FeeValt's core feature compares your subscriptions against your recharge plans to identify services you may be paying for twice. This comparison happens entirely on your device using a dataset bundled inside the app itself — no network request is made for this feature. No subscription data leaves your phone as part of this analysis.</p>
+  </section>
+
+  <!-- 6. Your controls & deletion -->
+  <section>
+    <h2>6. Your controls and data deletion</h2>
+
+    <h3>Manual export</h3>
+    <p>You can export all your data at any time from Settings → "Save to Drive" or "Email backup to myself". The export is a JSON file you save or send wherever you choose — FeeValt does not upload it anywhere.</p>
+
+    <h3>Delete all data</h3>
+    <p>Settings → "Delete everything" removes all locally stored data from your device immediately: subscriptions, plans, savings history, spend history, lapsed-plan records, and all preferences. This action is permanent and cannot be undone.</p>
+
+    <h3>Uninstalling the app</h3>
+    <p>Uninstalling FeeValt removes all local data. If Android Auto Backup was enabled on your device, a copy may exist in your Google account; you can delete it through Android's backup settings.</p>
+
+    <h3>No account to delete</h3>
+    <p>Because FeeValt has no accounts or servers, there is nothing server-side to request deletion of. "Delete everything" in Settings is the complete data-removal mechanism.</p>
+  </section>
+
+  <!-- 7. Advertising -->
+  <section>
+    <h2>7. Advertising and monetisation</h2>
+    <p>FeeValt is currently free with no active monetisation. There are no advertisements, no ad SDKs, and no data is sold or shared with advertisers or data brokers — now or ever. If paid features are introduced in a future update, this will be disclosed in advance in the app and on this page.</p>
+  </section>
+
+  <!-- 8. Children's privacy -->
+  <section>
+    <h2>8. Children's privacy</h2>
+    <p>FeeValt is not directed at children under 18. We do not knowingly collect personal information from anyone under 18. If you believe a child has provided personal information through the app, contact us at <a href="mailto:care@feevalt.com">care@feevalt.com</a> and we will address it promptly.</p>
+  </section>
+
+  <!-- 9. Data retention -->
+  <section>
+    <h2>9. Data retention</h2>
+    <p>All data is retained on your device for as long as you use the app or until you delete it. FeeValt holds no copies. There are no server-side retention schedules because there is no server.</p>
+  </section>
+
+  <!-- 10. Security -->
+  <section>
+    <h2>10. Security</h2>
+    <p>Your data is stored in an on-device encrypted database. Because it never leaves your device in normal use, the attack surface is limited to your physical device. For invoice scanning, the PDF is transmitted over HTTPS to Google's API. We recommend keeping your device's operating system up to date.</p>
+  </section>
+
+  <!-- 11. Third-party services -->
+  <section>
+    <h2>11. Third-party services</h2>
+    <p>FeeValt's app includes links to third-party websites (cancellation pages, provider recharge pages). Visiting those sites is subject to their own privacy policies. FeeValt is not responsible for the content or privacy practices of those sites.</p>
+    <p>The FeeValt website is hosted on <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement" target="_blank" rel="noopener">GitHub Pages</a> (GitHub's privacy policy applies to hosting). The domain is managed via <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener">Cloudflare</a> (Cloudflare's privacy policy applies to DNS and network traffic).</p>
+  </section>
+
+  <!-- 12. Changes -->
+  <section>
+    <h2>12. Changes to this policy</h2>
+    <p>We may update this Privacy Policy as the app evolves. Material changes — particularly any that introduce new data collection or sharing — will be announced in the app's release notes and reflected with an updated effective date at the top of this page. Continued use of the app after such notice constitutes acceptance of the updated policy.</p>
+  </section>
+
+  <!-- 13. Contact -->
+  <section>
+    <h2>13. Contact</h2>
+    <p>For any questions, concerns, or data requests related to this Privacy Policy, contact:</p>
+    <p>
+      <strong>Abhishek Kumar</strong><br>
+      FeeValt<br>
+      <a href="mailto:care@feevalt.com">care@feevalt.com</a>
+    </p>
+  </section>
+
+  <hr class="divider" />
+
+  <footer>
+    <p>© 2026 Abhishek Kumar. FeeValt.</p>
+    <p><a href="/terms/">Terms of Use</a> &nbsp;·&nbsp; <a href="https://feevalt.com">feevalt.com</a></p>
+  </footer>
+
+</main>
+
+</body>
+</html>

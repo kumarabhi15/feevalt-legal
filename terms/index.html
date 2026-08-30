@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Terms of Use — FeeValt</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0d0d0d;
+      --surface: #141414;
+      --border: #242424;
+      --ink: #f0ede8;
+      --ink2: #b0aca6;
+      --ink3: #6e6a65;
+      --accent: #d4572a;
+      --accent-soft: rgba(212, 87, 42, 0.12);
+      --radius: 12px;
+      --max: 740px;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 16px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Top bar ── */
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(13,13,13,0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 24px;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .topbar-wordmark {
+      font-weight: 700;
+      font-size: 17px;
+      letter-spacing: -0.3px;
+      color: var(--ink);
+      text-decoration: none;
+    }
+    .topbar-back {
+      font-size: 13px;
+      color: var(--ink3);
+      text-decoration: none;
+    }
+    .topbar-back:hover { color: var(--ink2); }
+
+    /* ── Layout ── */
+    .page {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 56px 24px 96px;
+    }
+
+    /* ── Hero ── */
+    .hero { margin-bottom: 48px; }
+    .hero-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.4px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+    .hero-title {
+      font-size: 34px;
+      font-weight: 800;
+      letter-spacing: -0.8px;
+      line-height: 1.15;
+      color: var(--ink);
+      margin-bottom: 16px;
+    }
+    .hero-meta {
+      font-size: 14px;
+      color: var(--ink3);
+    }
+
+    /* ── Callout ── */
+    .callout {
+      background: var(--accent-soft);
+      border: 1px solid rgba(212,87,42,0.25);
+      border-radius: var(--radius);
+      padding: 20px 24px;
+      margin-bottom: 48px;
+    }
+    .callout p {
+      font-size: 15px;
+      color: var(--ink2);
+      margin: 0;
+    }
+    .callout strong { color: var(--ink); }
+
+    /* ── Sections ── */
+    section { margin-bottom: 48px; }
+    h2 {
+      font-size: 19px;
+      font-weight: 700;
+      letter-spacing: -0.3px;
+      color: var(--ink);
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+    h3 {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--ink);
+      margin: 24px 0 8px;
+    }
+    p {
+      color: var(--ink2);
+      margin-bottom: 14px;
+    }
+    p:last-child { margin-bottom: 0; }
+
+    ul, ol {
+      padding-left: 20px;
+      color: var(--ink2);
+      margin-bottom: 14px;
+    }
+    li { margin-bottom: 6px; }
+    li:last-child { margin-bottom: 0; }
+
+    strong { color: var(--ink); font-weight: 600; }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* ── Warning box ── */
+    .warn {
+      background: rgba(250,204,21,0.07);
+      border: 1px solid rgba(250,204,21,0.2);
+      border-radius: var(--radius);
+      padding: 18px 22px;
+      margin: 16px 0;
+    }
+    .warn p {
+      font-size: 14px;
+      color: var(--ink2);
+      margin: 0;
+    }
+
+    /* ── Divider ── */
+    .divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 0 0 48px;
+    }
+
+    /* ── Footer ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding-top: 32px;
+      text-align: center;
+    }
+    footer p {
+      font-size: 13px;
+      color: var(--ink3);
+      margin-bottom: 8px;
+    }
+    footer a { color: var(--ink3); }
+    footer a:hover { color: var(--accent); }
+  </style>
+</head>
+<body>
+
+<div class="topbar">
+  <a class="topbar-wordmark" href="https://feevalt.com">FeeValt</a>
+  <a class="topbar-back" href="https://feevalt.com">← Back to home</a>
+</div>
+
+<main class="page">
+
+  <!-- Hero -->
+  <div class="hero">
+    <div class="hero-label">Legal</div>
+    <h1 class="hero-title">Terms of Use</h1>
+    <p class="hero-meta">Effective date: 30 August 2026 &nbsp;·&nbsp; Last updated: 30 August 2026</p>
+  </div>
+
+  <!-- Callout -->
+  <div class="callout">
+    <p><strong>Plain-language summary:</strong> FeeValt is a free tool to help you track subscriptions and recharge plans. The app provides information and suggestions only — decisions about cancelling, renewing, or changing any service are entirely yours. We're not responsible for third-party services, and we don't guarantee that any information in the app (including bundled benefit data or cancellation links) is always current.</p>
+  </div>
+
+  <!-- 1. Acceptance -->
+  <section>
+    <h2>1. Acceptance of these terms</h2>
+    <p>By downloading, installing, or using the FeeValt Android application (the "App") or the FeeValt website at <a href="https://feevalt.com">feevalt.com</a> (the "Site"), you agree to these Terms of Use ("Terms"). If you do not agree, do not use the App or Site.</p>
+    <p>These Terms constitute a legally binding agreement between you and Abhishek Kumar ("we", "us", or "our"), the individual developer of FeeValt.</p>
+  </section>
+
+  <!-- 2. What FeeValt does -->
+  <section>
+    <h2>2. What FeeValt does</h2>
+    <p>FeeValt is a personal finance tracking application that helps you:</p>
+    <ul>
+      <li>Keep a record of your digital subscriptions and telecom recharge plans</li>
+      <li>Receive reminders before renewals and expiries</li>
+      <li>Identify cases where a recharge plan you already hold may include an OTT service you are also paying for separately ("bundle overlap")</li>
+      <li>Estimate potential savings if you cancel a redundant subscription</li>
+    </ul>
+    <p>All processing happens on your device. FeeValt does not connect to any subscription service, telecom provider, or bank on your behalf. It cannot view your actual billing history, verify whether a subscription is truly active, or take any action with a third party.</p>
+  </section>
+
+  <!-- 3. Informational nature -->
+  <section>
+    <h2>3. Informational nature of the App — important disclaimer</h2>
+
+    <h3>Bundle-overlap suggestions</h3>
+    <p>The bundle-overlap feature compares what you have entered in the App against a dataset of telecom plan benefits that we maintain and periodically update. This dataset is sourced from publicly available information and verified by hand, but <strong>telecom plan terms change frequently</strong>. The App cannot guarantee that the plan benefits shown are current at the moment you view them.</p>
+    <div class="warn">
+      <p><strong>Always verify with your telecom provider before cancelling any subscription.</strong> A suggestion from FeeValt that you are paying twice is a prompt to investigate — not a confirmed finding. Confirm the current terms of your recharge plan directly with Airtel, Jio, Vi, or whichever provider you use before making any cancellation decision.</p>
+    </div>
+
+    <h3>Cancellation links</h3>
+    <p>FeeValt includes shortcut links to cancellation pages for known services. These links point to third-party websites that change without notice. We do not guarantee that any cancellation link is current, correct, or leads to the intended outcome. Following a cancellation link and any action taken on a third-party site is entirely at your own risk.</p>
+
+    <h3>Invoice scanning</h3>
+    <p>When you use the invoice-scan feature, the extracted data (service name, amount, billing cycle, etc.) is a best-effort read by an AI model. You are responsible for reviewing and correcting the pre-filled form before saving. FeeValt is not responsible for any financial decision made based on incorrectly extracted invoice data.</p>
+
+    <h3>Savings estimates</h3>
+    <p>Any savings figure shown in the App (annualised savings, lifetime cost, etc.) is calculated from the data you have entered and is illustrative only. It does not account for minimum contract terms, early-termination fees, promotional pricing, or any other condition that may apply to a specific subscription.</p>
+  </section>
+
+  <!-- 4. User responsibilities -->
+  <section>
+    <h2>4. Your responsibilities</h2>
+    <ul>
+      <li>You are responsible for the accuracy of the information you enter into the App.</li>
+      <li>You are responsible for all decisions you make based on information shown in the App, including any decision to cancel, downgrade, or change a subscription or plan.</li>
+      <li>You must be at least 18 years old to use FeeValt.</li>
+      <li>You agree to use the App only for lawful personal purposes.</li>
+    </ul>
+  </section>
+
+  <!-- 5. Intellectual property -->
+  <section>
+    <h2>5. Intellectual property</h2>
+    <p>The FeeValt App and Site — including the name, logo, design, code, and curated content such as the service catalogue and plan data — are owned by Abhishek Kumar and protected under applicable intellectual property law.</p>
+    <p>You are granted a limited, non-exclusive, non-transferable licence to use the App on your personal Android device. You may not copy, modify, distribute, sell, or reverse-engineer the App or any part of it.</p>
+    <p>Third-party service names, logos, and trademarks visible in the App (Netflix, Spotify, Airtel, Jio, etc.) belong to their respective owners. Their appearance in FeeValt is for identification purposes only and does not imply any affiliation with or endorsement by those companies.</p>
+  </section>
+
+  <!-- 6. Third-party services -->
+  <section>
+    <h2>6. Third-party services and links</h2>
+    <p>FeeValt integrates with or links to the following third-party services. FeeValt is not affiliated with any of them, does not control them, and is not responsible for their content, availability, or privacy practices.</p>
+    <ul>
+      <li><strong>Google Gemini API</strong> — used for invoice scanning when you explicitly request it. Governed by Google's terms and privacy policy.</li>
+      <li><strong>Telecom provider websites</strong> (Airtel, Jio, Vi) — linked for plan recharge and benefit verification. Governed by each provider's own terms.</li>
+      <li><strong>Service cancellation pages</strong> — linked as shortcuts. Governed by each service's own terms.</li>
+      <li><strong>GitHub Pages</strong> — hosts this website. Governed by GitHub's terms.</li>
+      <li><strong>Cloudflare</strong> — provides DNS and network services for the feevalt.com domain. Governed by Cloudflare's terms.</li>
+    </ul>
+    <p>Visiting any third-party site from a link in FeeValt is at your own risk.</p>
+  </section>
+
+  <!-- 7. No financial advice -->
+  <section>
+    <h2>7. No financial or consumer advice</h2>
+    <p>FeeValt is a personal productivity tool, not a financial advisory service. Nothing in the App or on the Site constitutes financial, legal, or consumer advice. The suggestions and calculations are based solely on the data you enter and the dataset bundled in the App. Before making any financial decision — particularly one involving contractual commitments to a telco or subscription service — seek appropriate advice and verify current terms directly with the provider.</p>
+  </section>
+
+  <!-- 8. Availability -->
+  <section>
+    <h2>8. Availability and updates</h2>
+    <p>FeeValt is provided "as is" and "as available". We make no guarantee that the App will be available at any particular time, free of bugs, or compatible with any specific Android version or device. We may update, modify, or discontinue the App at any time without notice.</p>
+    <p>The plan and benefit dataset bundled in the App is updated periodically but may not reflect real-time changes to telecom provider offerings. App updates are required to receive dataset refreshes.</p>
+  </section>
+
+  <!-- 9. Limitation of liability -->
+  <section>
+    <h2>9. Limitation of liability</h2>
+    <p>To the maximum extent permitted by applicable law, Abhishek Kumar shall not be liable for any direct, indirect, incidental, consequential, or special damages arising from:</p>
+    <ul>
+      <li>Your use of or reliance on the App or any information it displays</li>
+      <li>Any decision to cancel, change, or renew a subscription or plan based on App suggestions</li>
+      <li>Inaccuracies in the bundled plan or service dataset</li>
+      <li>Outdated or broken cancellation links</li>
+      <li>Loss of locally stored App data due to device failure, uninstallation, or accidental deletion</li>
+      <li>Any interruption or discontinuation of the App</li>
+    </ul>
+    <p>Your use of FeeValt is at your sole risk.</p>
+  </section>
+
+  <!-- 10. Monetisation -->
+  <section>
+    <h2>10. Monetisation</h2>
+    <p>FeeValt is currently free with all features unlocked and no in-app purchases active. If paid features are introduced in the future, the pricing and terms will be clearly disclosed within the App and this document will be updated before any charge is applied.</p>
+  </section>
+
+  <!-- 11. Governing law -->
+  <section>
+    <h2>11. Governing law</h2>
+    <p>These Terms are governed by the laws of India. Any disputes arising from your use of FeeValt shall be subject to the jurisdiction of courts in India.</p>
+  </section>
+
+  <!-- 12. Changes -->
+  <section>
+    <h2>12. Changes to these terms</h2>
+    <p>We may update these Terms from time to time. Material changes will be announced in the App's release notes and reflected with an updated effective date at the top of this page. Continued use of the App after such notice constitutes your acceptance of the revised Terms.</p>
+  </section>
+
+  <!-- 13. Contact -->
+  <section>
+    <h2>13. Contact</h2>
+    <p>For questions about these Terms, contact:</p>
+    <p>
+      <strong>Abhishek Kumar</strong><br>
+      FeeValt<br>
+      <a href="mailto:care@feevalt.com">care@feevalt.com</a>
+    </p>
+  </section>
+
+  <hr class="divider" />
+
+  <footer>
+    <p>© 2026 Abhishek Kumar. FeeValt.</p>
+    <p><a href="/privacy/">Privacy Policy</a> &nbsp;·&nbsp; <a href="https://feevalt.com">feevalt.com</a></p>
+  </footer>
+
+</main>
+
+</body>
+</html>
