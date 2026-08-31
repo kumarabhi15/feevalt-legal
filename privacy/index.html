@@ -214,7 +214,7 @@
 
   <!-- Core commitment callout -->
   <div class="callout">
-    <p><strong>The short version:</strong> FeeValt is a privacy-first app. Your subscription and plan data never leaves your device — there is no FeeValt server, no account, and no cloud sync. The only time any of your content reaches an external service is when <em>you</em> explicitly choose to scan an invoice.</p>
+    <p><strong>The short version:</strong> FeeValt is a privacy-first app. Your subscription and plan data never leaves your device — there is no FeeValt account and no cloud sync. The only time any of your content reaches an external service is when <em>you</em> explicitly choose to scan an invoice, and even then it passes through a small relay we operate solely to protect our API credentials, never to store or view your data.</p>
   </div>
 
   <!-- 1. Who we are -->
@@ -258,14 +258,15 @@
   <!-- 3. Third-party data flows -->
   <section>
     <h2>3. When data leaves your device</h2>
-    <p>There are only two circumstances in which any data is transmitted from your device, and neither involves FeeValt's own servers (because no FeeValt servers exist).</p>
+    <p>There are only two circumstances in which any data is transmitted from your device. Neither involves an account or storage on our side — FeeValt operates no database or backend of any kind. The one exception, described immediately below, is a minimal relay used only to protect an API credential, not to collect data.</p>
 
     <div class="flow-card">
       <div class="flow-card-title">
         Google Gemini API (invoice scanning)
         <span class="badge badge-opt">Opt-in only</span>
       </div>
-      <p>If you tap "Scan an invoice", the PDF you select is sent to Google's Gemini AI service (<code>gemini-2.5-flash</code>) to extract the service name, amount, currency, billing cycle, and renewal date. Nothing else — no other subscription data, no device identifier — is included in the request. This happens only when you explicitly trigger it; FeeValt never sends invoices automatically or in the background. Google's use of data sent to Gemini is governed by <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google's Privacy Policy</a>.</p>
+      <p>If you tap "Scan an invoice", the PDF you select is sent to Google's Gemini AI service (<code>gemini-3.6-flash</code>) to extract the service name, amount, currency, billing cycle, and renewal date. Nothing else — no other subscription data, no device identifier — is included in the request. This happens only when you explicitly trigger it; FeeValt never sends invoices automatically or in the background.</p>
+      <p>The request does not go directly from your device to Google. It passes through a small relay service we operate (a Google Cloud Function), whose only purpose is to keep our Gemini API credential off your device rather than compiled into the app, where it could otherwise be extracted. This relay does not log, store, or retain the PDF or the extracted result in any form — it forwards the request to Gemini and returns Gemini's response, nothing more. Google's use of data sent to Gemini is governed by <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google's Privacy Policy</a>.</p>
     </div>
 
     <div class="flow-card">
@@ -351,7 +352,7 @@
   <!-- 10. Security -->
   <section>
     <h2>10. Security</h2>
-    <p>Your data is stored in an on-device local database (Hive CE). It is not encrypted at the application level — security relies on Android's standard app sandbox, which restricts access to your data to FeeValt only. Because your data never leaves your device in normal use, the attack surface is limited to your physical device. For invoice scanning, the PDF is transmitted over HTTPS to Google's API. We recommend keeping your device's operating system up to date.</p>
+    <p>Your data is stored in an on-device local database (Hive CE). It is not encrypted at the application level — security relies on Android's standard app sandbox, which restricts access to your data to FeeValt only. Because your data never leaves your device in normal use, the attack surface is limited to your physical device. For invoice scanning, the PDF is transmitted over HTTPS to our relay service and on to Google's API; the relay does not persist any data in transit. We recommend keeping your device's operating system up to date.</p>
   </section>
 
   <!-- 11. Third-party services -->
