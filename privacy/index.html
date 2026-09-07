@@ -247,7 +247,7 @@
       <li>Your phone number, email address, or any account identifier</li>
       <li>Location data</li>
       <li>Device contacts or call logs</li>
-      <li>Any advertising or analytics identifiers</li>
+      <li>Any advertising identifiers — FeeValt shows no ads and includes no ad SDKs</li>
     </ul>
 
     <h3>Website (feevalt.com)</h3>
@@ -258,7 +258,7 @@
   <!-- 3. Third-party data flows -->
   <section>
     <h2>3. When data leaves your device</h2>
-    <p>There are only two circumstances in which any data is transmitted from your device. Neither involves an account or storage on our side — FeeValt operates no database or backend of any kind. The one exception, described immediately below, is a minimal relay used only to protect an API credential, not to collect data.</p>
+    <p>The following describes every situation in which data may leave your device. None of these involve an account or storage on our side — FeeValt operates no database or backend of any kind. The one exception, described immediately below, is a minimal relay used only to protect an API credential, not to collect data.</p>
 
     <div class="flow-card">
       <div class="flow-card-title">
@@ -279,10 +279,18 @@
 
     <div class="flow-card">
       <div class="flow-card-title">
-        Firebase Crashlytics
-        <span class="badge badge-inactive">Currently inactive</span>
+        Firebase Analytics
+        <span class="badge badge-auto">Automatic, aggregate</span>
       </div>
-      <p>FeeValt includes Firebase Crashlytics in its code, but it is <strong>not currently active</strong>. No crash data is being collected or transmitted. If crash reporting is enabled in a future update, this policy will be updated in advance and it will be disclosed in the app's release notes.</p>
+      <p>FeeValt uses Firebase Analytics (a Google service) to understand how the app is used in aggregate — for example, how often the bundle-overlap feature finds a match, or how often a scanned invoice is successfully added. These events never include the name of a specific service you track, the amount you pay, or any content from your subscriptions or plans — only that an event occurred and, where relevant, a category-level figure such as your total annual savings. Firebase Analytics assigns an anonymous, device-level identifier to your installation to power aggregate reporting; it is not linked to your name, email, or any other personal identifier, because FeeValt collects none of those in the first place.</p>
+    </div>
+
+    <div class="flow-card">
+      <div class="flow-card-title">
+        Firebase Crashlytics
+        <span class="badge badge-auto">Automatic, if the app crashes</span>
+      </div>
+      <p>FeeValt uses Firebase Crashlytics to help us detect and fix crashes. If the app crashes, Crashlytics automatically sends a crash report containing technical diagnostic information — device model, Android OS version, and the code location where the crash occurred — to help us diagnose and fix the issue. This report does not include your subscription or plan data, and is not linked to your name, email, or any other personal identifier.</p>
     </div>
 
     <div class="flow-card">
