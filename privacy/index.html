@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Privacy Policy — FeeValt</title>
+  <title>Privacy Policy - FeeValt</title>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -209,12 +209,12 @@
   <div class="hero">
     <div class="hero-label">Legal</div>
     <h1 class="hero-title">Privacy Policy</h1>
-    <p class="hero-meta">Effective date: 30 August 2026 &nbsp;·&nbsp; Last updated: 30 August 2026</p>
+    <p class="hero-meta">Effective date: 30 August 2026 &nbsp;·&nbsp; Last updated: 7 September 2026</p>
   </div>
 
   <!-- Core commitment callout -->
   <div class="callout">
-    <p><strong>The short version:</strong> FeeValt is a privacy-first app. Your subscription and plan data never leaves your device — there is no FeeValt account and no cloud sync. The only time any of your content reaches an external service is when <em>you</em> explicitly choose to scan an invoice, and even then it passes through a small relay we operate solely to protect our API credentials, never to store or view your data.</p>
+    <p><strong>The short version:</strong> FeeValt is a privacy-first app. Your subscription and plan data never leaves your device. There is no FeeValt account and no cloud sync. The only time any of your content reaches an external service is when <em>you</em> explicitly choose to scan an invoice, and even then it passes through a small relay we operate solely to protect our API credentials, never to store or view your data.</p>
   </div>
 
   <!-- 1. Who we are -->
@@ -247,8 +247,9 @@
       <li>Your phone number, email address, or any account identifier</li>
       <li>Location data</li>
       <li>Device contacts or call logs</li>
-      <li>Any advertising identifiers — FeeValt shows no ads and includes no ad SDKs</li>
+      <li>Any advertising identifiers (FeeValt shows no ads and includes no ad SDKs)</li>
     </ul>
+    <p>One clarification on the location line above: FeeValt itself never requests, stores, or has access to your location. But network requests made by Firebase Analytics, Crashlytics, and brand-logo lookups reach Google's servers directly, and like any web request they carry your device's IP address. Firebase uses that IP to derive a coarse, non-precise country or region for its own aggregate reporting. FeeValt does not see, store, or receive this information itself.</p>
 
     <h3>Website (feevalt.com)</h3>
     <p>The FeeValt website is a static page hosted on GitHub Pages. We do not run analytics or tracking scripts on it. Standard server logs (IP address, page requested, timestamp) may be retained by GitHub's infrastructure under GitHub's own privacy policy, outside our control.</p>
@@ -258,15 +259,15 @@
   <!-- 3. Third-party data flows -->
   <section>
     <h2>3. When data leaves your device</h2>
-    <p>The following describes every situation in which data may leave your device. None of these involve an account or storage on our side — FeeValt operates no database or backend of any kind. The one exception, described immediately below, is a minimal relay used only to protect an API credential, not to collect data.</p>
+    <p>The following describes every situation in which data may leave your device. None of these involve an account or storage on our side. FeeValt operates no database or backend of any kind. The one exception, described immediately below, is a minimal relay used only to protect an API credential, not to collect data.</p>
 
     <div class="flow-card">
       <div class="flow-card-title">
         Google Gemini API (invoice scanning)
         <span class="badge badge-opt">Opt-in only</span>
       </div>
-      <p>If you tap "Scan an invoice", the PDF you select is sent to Google's Gemini AI service (<code>gemini-3.6-flash</code>) to extract the service name, amount, currency, billing cycle, and renewal date. Nothing else — no other subscription data, no device identifier — is included in the request. This happens only when you explicitly trigger it; FeeValt never sends invoices automatically or in the background.</p>
-      <p>The request does not go directly from your device to Google. It passes through a small relay service we operate (a Google Cloud Function), whose only purpose is to keep our Gemini API credential off your device rather than compiled into the app, where it could otherwise be extracted. This relay does not log, store, or retain the PDF or the extracted result in any form — it forwards the request to Gemini and returns Gemini's response, nothing more. Google's use of data sent to Gemini is governed by <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google's Privacy Policy</a>.</p>
+      <p>If you tap "Scan an invoice", the PDF you select is sent to Google's Gemini AI service (<code>gemini-3.6-flash</code>) to extract the service name, amount, currency, billing cycle, and renewal date. Nothing else is included in the request: no other subscription data, no device identifier. This happens only when you explicitly trigger it; FeeValt never sends invoices automatically or in the background.</p>
+      <p>The request does not go directly from your device to Google. It passes through a small relay service we operate (a Google Cloud Function), whose only purpose is to keep our Gemini API credential off your device rather than compiled into the app, where it could otherwise be extracted. This relay is designed only to forward the request to Gemini and return Gemini's response, without logging, storing, or retaining the PDF or the extracted result. Google's own use of data sent to Gemini is governed by <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google's Privacy Policy</a>.</p>
     </div>
 
     <div class="flow-card">
@@ -274,7 +275,7 @@
         Brand logo lookups
         <span class="badge badge-auto">Automatic, anonymous</span>
       </div>
-      <p>When you add a subscription, FeeValt makes a network request to fetch the service's logo using only the service's domain name. No personal data is included. This is a read-only lookup and the result is cached on-device to minimise future requests.</p>
+      <p>FeeValt ships with a built-in table of known service domains, and it warms (pre-fetches) the logo for every domain in that table when the app starts, identically for every user. If you type a service name that isn't already in that table, no network request is made for it at all: FeeValt simply shows no logo rather than looking one up. In practice, this means the set of logos fetched is the same fixed list for everyone, and it carries no signal about which specific services you personally track. Results are cached on-device to avoid repeat requests.</p>
     </div>
 
     <div class="flow-card">
@@ -282,7 +283,8 @@
         Firebase Analytics
         <span class="badge badge-auto">Automatic, aggregate</span>
       </div>
-      <p>FeeValt uses Firebase Analytics (a Google service) to understand how the app is used in aggregate — for example, how often the bundle-overlap feature finds a match, or how often a scanned invoice is successfully added. These events never include the name of a specific service you track, the amount you pay, or any content from your subscriptions or plans — only that an event occurred and, where relevant, a category-level figure such as your total annual savings. Firebase Analytics assigns an anonymous, device-level identifier to your installation to power aggregate reporting; it is not linked to your name, email, or any other personal identifier, because FeeValt collects none of those in the first place.</p>
+      <p>FeeValt uses Firebase Analytics (a Google service) to understand how the app is used in aggregate. For example, how often the bundle-overlap feature finds a match, or how often a scanned invoice is successfully added. These events never include the name of a specific service you track or any content from your subscriptions. Most events carry no more than the fact that something happened, plus a category-level figure where relevant, such as your total annual savings. One exception worth naming directly: when you add a recharge plan, the event we log includes your telecom provider (for example, Airtel, Jio, or Vi) and your plan type. That's more specific than a pure aggregate figure, so we're calling it out rather than folding it into the general description above.</p>
+      <p>Separately from anything FeeValt's own code sends, Firebase automatically collects a standard set of technical events and attributes on every install, regardless of what you do in the app: things like first open, session start, app updates, app version, device model, OS version, and a coarse, non-precise geographic region derived from your IP address. This is standard behaviour for any app using Firebase, not something FeeValt configures or adds to. Firebase Analytics assigns an anonymous, device-level identifier to your installation to power all of this reporting; it is not linked to your name, email, or any other personal identifier, because FeeValt collects none of those in the first place.</p>
     </div>
 
     <div class="flow-card">
@@ -290,7 +292,23 @@
         Firebase Crashlytics
         <span class="badge badge-auto">Automatic, if the app crashes</span>
       </div>
-      <p>FeeValt uses Firebase Crashlytics to help us detect and fix crashes. If the app crashes, Crashlytics automatically sends a crash report containing technical diagnostic information — device model, Android OS version, and the code location where the crash occurred — to help us diagnose and fix the issue. This report does not include your subscription or plan data, and is not linked to your name, email, or any other personal identifier.</p>
+      <p>FeeValt uses Firebase Crashlytics to help us detect and fix crashes. If the app crashes, Crashlytics automatically sends a crash report containing technical diagnostic information such as device model, Android OS version, and the code location where the crash occurred, to help us diagnose and fix the issue. This report does not include your subscription or plan data, and is not linked to your name, email, or any other personal identifier.</p>
+    </div>
+
+    <div class="flow-card">
+      <div class="flow-card-title">
+        Google Play Billing
+        <span class="badge badge-auto">Automatic, every app launch</span>
+      </div>
+      <p>Every time you open FeeValt, the app checks with Google Play to see whether you have any prior purchase to restore. It does this even though nothing is currently purchasable in the app; the check runs automatically in the background on every launch as part of how Android apps integrate with Google Play. This exchange happens directly between your device and Google Play and is governed by Google's own privacy policy.</p>
+    </div>
+
+    <div class="flow-card">
+      <div class="flow-card-title">
+        Google Play in-app review
+        <span class="badge badge-auto">Occasional, if the app prompts you</span>
+      </div>
+      <p>FeeValt may occasionally invite you to rate the app using Google Play's built-in review prompt. This is handled entirely by Google Play; FeeValt does not see, store, or have access to your rating or review, or to whether you responded to the prompt at all.</p>
     </div>
 
     <div class="flow-card">
@@ -298,7 +316,7 @@
         Android Auto Backup
         <span class="badge badge-auto">OS-level, if enabled by you</span>
       </div>
-      <p>Android's built-in backup system may copy your app's local data to your Google account if you have device backup enabled. This is controlled entirely by Android and your Google account settings — FeeValt does not initiate or control this process. Refer to <a href="https://support.google.com/android/answer/2819582" target="_blank" rel="noopener">Google's backup documentation</a> for details.</p>
+      <p>Android's built-in backup system may copy your app's local data to your Google account if you have device backup enabled. This is controlled entirely by Android and your Google account settings. FeeValt does not initiate or control this process. Refer to <a href="https://support.google.com/android/answer/2819582" target="_blank" rel="noopener">Google's backup documentation</a> for details.</p>
     </div>
   </section>
 
@@ -307,11 +325,11 @@
     <h2>4. App permissions</h2>
     <p>FeeValt requests the following Android permissions and only for the stated purpose:</p>
     <ul>
-      <li><strong>Notifications</strong> — to deliver renewal and expiry reminders you set up</li>
-      <li><strong>Exact alarms</strong> — so reminders fire at the precise time you chose, not at an approximate window</li>
-      <li><strong>Boot receiver</strong> — so scheduled reminders survive a device reboot</li>
-      <li><strong>Internet</strong> — for brand-logo lookups and, when you use it, invoice scanning via Gemini</li>
-      <li><strong>Ignore battery optimisations</strong> — optional, user-triggered from Settings, needed on some Android OEMs (Xiaomi, Realme, Oppo, Vivo) that aggressively kill background processes and would otherwise block reminders</li>
+      <li><strong>Notifications</strong>: to deliver renewal and expiry reminders you set up</li>
+      <li><strong>Exact alarms</strong>: so reminders fire at the precise time you chose, not at an approximate window</li>
+      <li><strong>Boot receiver</strong>: so scheduled reminders survive a device reboot</li>
+      <li><strong>Internet</strong>: for brand-logo lookups and, when you use it, invoice scanning via Gemini</li>
+      <li><strong>Ignore battery optimisations</strong>: optional, user-triggered from Settings, needed on some Android OEMs (Xiaomi, Realme, Oppo, Vivo) that aggressively kill background processes and would otherwise block reminders</li>
     </ul>
     <p>FeeValt does not request location, camera, microphone, contacts, or broad storage permissions.</p>
   </section>
@@ -319,7 +337,7 @@
   <!-- 5. Bundle overlap feature -->
   <section>
     <h2>5. How the bundle-overlap feature works</h2>
-    <p>FeeValt's core feature compares your subscriptions against your recharge plans to identify services you may be paying for twice. This comparison happens entirely on your device using a dataset bundled inside the app itself — no network request is made for this feature. No subscription data leaves your phone as part of this analysis.</p>
+    <p>FeeValt's core feature compares your subscriptions against your recharge plans to identify services you may be paying for twice. This comparison happens entirely on your device using a dataset bundled inside the app itself. No network request is made for this feature, and no subscription data leaves your phone as part of this analysis.</p>
   </section>
 
   <!-- 6. Your controls & deletion -->
@@ -327,7 +345,10 @@
     <h2>6. Your controls and data deletion</h2>
 
     <h3>Manual export</h3>
-    <p>You can export all your data at any time from Settings → "Save to Drive" or "Email backup to myself". The export is a JSON file you save or send wherever you choose — FeeValt does not upload it anywhere.</p>
+    <p>You can export all your data at any time from Settings → "Save to Drive" or "Email backup to myself". The export is a JSON file you save or send wherever you choose. FeeValt does not upload it anywhere.</p>
+
+    <h3>Analytics and crash reporting are on by default</h3>
+    <p>To be direct about this: FeeValt does not currently offer a toggle to turn off Firebase Analytics or Crashlytics. Both are active from your first launch, in every build, including for anyone doing testing or development. Uninstalling the app is currently the only way to stop this collection. We may add an in-app opt-out in a future update; if we do, this section will be updated to reflect it.</p>
 
     <h3>Delete all data</h3>
     <p>Settings → "Delete everything" removes all locally stored data from your device immediately: subscriptions, plans, savings history, spend history, lapsed-plan records, and all preferences. This action is permanent and cannot be undone.</p>
@@ -342,7 +363,7 @@
   <!-- 7. Advertising -->
   <section>
     <h2>7. Advertising and monetisation</h2>
-    <p>FeeValt is currently free with no active monetisation. There are no advertisements, no ad SDKs, and no data is sold or shared with advertisers or data brokers — now or ever. If paid features are introduced in a future update, this will be disclosed in advance in the app and on this page.</p>
+    <p>FeeValt is currently free with no active monetisation. There are no advertisements, no ad SDKs, and no data is sold or shared with advertisers or data brokers, now or ever. If paid features are introduced in a future update, this will be disclosed in advance in the app and on this page.</p>
   </section>
 
   <!-- 8. Children's privacy -->
@@ -360,7 +381,7 @@
   <!-- 10. Security -->
   <section>
     <h2>10. Security</h2>
-    <p>Your data is stored in an on-device local database (Hive CE). It is not encrypted at the application level — security relies on Android's standard app sandbox, which restricts access to your data to FeeValt only. Because your data never leaves your device in normal use, the attack surface is limited to your physical device. For invoice scanning, the PDF is transmitted over HTTPS to our relay service and on to Google's API; the relay does not persist any data in transit. We recommend keeping your device's operating system up to date.</p>
+    <p>Your data is stored in an on-device local database (Hive CE). It is not encrypted at the application level. Security relies on Android's standard app sandbox, which restricts access to your data to FeeValt only. Because your data never leaves your device in normal use, the attack surface is limited to your physical device. For invoice scanning, the PDF is transmitted over HTTPS to our relay service and on to Google's API. We recommend keeping your device's operating system up to date.</p>
   </section>
 
   <!-- 11. Third-party services -->
@@ -373,7 +394,7 @@
   <!-- 12. Changes -->
   <section>
     <h2>12. Changes to this policy</h2>
-    <p>We may update this Privacy Policy as the app evolves. Material changes — particularly any that introduce new data collection or sharing — will be announced in the app's release notes and reflected with an updated effective date at the top of this page. Continued use of the app after such notice constitutes acceptance of the updated policy.</p>
+    <p>We may update this Privacy Policy as the app evolves. Material changes, particularly any that introduce new data collection or sharing, will be announced in the app's release notes and reflected with an updated effective date at the top of this page. Continued use of the app after such notice constitutes acceptance of the updated policy.</p>
   </section>
 
   <!-- 13. Contact -->
@@ -385,6 +406,7 @@
       FeeValt<br>
       <a href="mailto:care@feevalt.com">care@feevalt.com</a>
     </p>
+    <p>Abhishek Kumar also serves as the Grievance Officer for FeeValt under India's Digital Personal Data Protection Act, 2023. Any grievance related to how your personal data is handled can be raised at the same address above.</p>
   </section>
 
   <hr class="divider" />
