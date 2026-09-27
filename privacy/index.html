@@ -209,12 +209,12 @@
   <div class="hero">
     <div class="hero-label">Legal</div>
     <h1 class="hero-title">Privacy Policy</h1>
-    <p class="hero-meta">Effective date: 30 August 2026 &nbsp;·&nbsp; Last updated: 7 September 2026</p>
+    <p class="hero-meta">Effective date: 26 September 2026 &nbsp;·&nbsp; Last updated: 26 September 2026</p>
   </div>
 
   <!-- Core commitment callout -->
   <div class="callout">
-    <p><strong>The short version:</strong> FeeValt is a privacy-first app. Your subscription and plan data never leaves your device. There is no FeeValt account and no cloud sync. The only time any of your content reaches an external service is when <em>you</em> explicitly choose to scan an invoice, and even then it passes through a small relay we operate solely to protect our API credentials, never to store or view your data.</p>
+    <p><strong>The short version:</strong> Your subscription and plan data stays on your device and never leaves it, except when you explicitly scan an invoice. Using FeeValt does require signing in with your Google account, and your account identity, referral activity, and any rewards you earn are stored on our servers — Sections 2, 3, 6 and 9 below describe exactly what's kept, for how long, and what's removed if you delete your account.</p>
   </div>
 
   <!-- 1. Who we are -->
@@ -239,12 +239,20 @@
       <li>Lapsed-plan records: plans removed without renewal</li>
     </ul>
 
+    <h3>Data associated with your account</h3>
+    <p>The first time you open FeeValt, an anonymous account identifier is created for you automatically. You're then required to sign in with your Google account, which links your Google identity to that identifier — there's no way to use FeeValt without completing this step.</p>
+    <p>Firebase Authentication (Google's identity service, which we use to run FeeValt's account system) stores, as part of your account: the email address, display name, and profile photo URL associated with your Google account, your Google provider ID, and your account's creation and last-sign-in times. FeeValt's own code does not separately copy or store your Google email address anywhere; the only copy of it is held by Firebase Authentication on our behalf.</p>
+    <p>Alongside this, every account — whether or not you ever refer anyone — gets a small server-side record in our database (Firestore), containing: your account's creation date, a referral code generated for you, and your current entitlement status (for example, whether you're on the free plan or have unlocked premium features). If you refer other users or make a purchase, additional fields track that activity, described in Section 3.</p>
+
+    <h3>Reward email, if a referral earns you a voucher</h3>
+    <p>If a referral you make earns you a voucher, you'll be asked to provide an email address to receive it. This will be an address you type in yourself — not automatically your Google account email — used only to issue and process that reward.</p>
+
     <h3>Data we do not collect</h3>
-    <p>FeeValt <strong>never</strong> collects:</p>
+    <p>Beyond your account and referral activity described above, FeeValt <strong>never</strong> collects:</p>
     <ul>
       <li>Bank, card, or UPI details of any kind</li>
       <li>SMS messages or notification content (permanently excluded by design)</li>
-      <li>Your phone number, email address, or any account identifier</li>
+      <li>Your phone number</li>
       <li>Location data</li>
       <li>Device contacts or call logs</li>
       <li>Any advertising identifiers (FeeValt shows no ads and includes no ad SDKs)</li>
@@ -259,15 +267,47 @@
   <!-- 3. Third-party data flows -->
   <section>
     <h2>3. When data leaves your device</h2>
-    <p>The following describes every situation in which data may leave your device. None of these involve an account or storage on our side. FeeValt operates no database or backend of any kind. The one exception, described immediately below, is a minimal relay used only to protect an API credential, not to collect data.</p>
+    <p>The following describes every situation in which data may leave your device or is stored on our servers. FeeValt uses two separate Google Cloud services: Firebase (Authentication, Firestore, and Cloud Functions, hosted in the asia-south1 region in Mumbai) for account sign-in and the referral program described below, and a separate relay Cloud Function, in a different Google Cloud project running in the us-central1 region, used only to forward invoice-scanning requests to Google's Gemini API. Outside of these, no other database or backend is used.</p>
+
+    <div class="flow-card">
+      <div class="flow-card-title">
+        Google sign-in
+        <span class="badge badge-auto">Required to use the app</span>
+      </div>
+      <p>Signing in with your Google account is required before you can use FeeValt. This links your Google identity to your account in Firebase Authentication, storing your email address, display name, profile photo URL, and sign-in timestamps, as described in Section 2. This exchange happens directly between your device, Firebase, and Google.</p>
+    </div>
 
     <div class="flow-card">
       <div class="flow-card-title">
         Google Gemini API (invoice scanning)
         <span class="badge badge-opt">Opt-in only</span>
       </div>
-      <p>If you tap "Scan an invoice", the PDF you select is sent to Google's Gemini AI service (<code>gemini-3.6-flash</code>) to extract the service name, amount, currency, billing cycle, and renewal date. Nothing else is included in the request: no other subscription data, no device identifier. This happens only when you explicitly trigger it; FeeValt never sends invoices automatically or in the background.</p>
-      <p>The request does not go directly from your device to Google. It passes through a small relay service we operate (a Google Cloud Function), whose only purpose is to keep our Gemini API credential off your device rather than compiled into the app, where it could otherwise be extracted. This relay is designed only to forward the request to Gemini and return Gemini's response, without logging, storing, or retaining the PDF or the extracted result. Google's own use of data sent to Gemini is governed by <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google's Privacy Policy</a>.</p>
+      <p>If you tap "Scan an invoice", the PDF you select is sent to Google's Gemini AI service (<code>gemini-3.6-flash</code>) to extract the service name, amount, currency, billing cycle, and renewal date. Nothing else is included in the request: no other subscription data, no account identifier. This happens only when you explicitly trigger it; FeeValt never sends invoices automatically or in the background.</p>
+      <p>The request does not go directly from your device to Google. It passes through a small relay service we operate (a separate Google Cloud Function, described above), whose only purpose is to keep our Gemini API credential off your device rather than compiled into the app, where it could otherwise be extracted. This relay is designed only to forward the request to Gemini and return Gemini's response, without logging, storing, or retaining the PDF or the extracted result. Google's own use of data sent to Gemini is governed by <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google's Privacy Policy</a>.</p>
+    </div>
+
+    <div class="flow-card">
+      <div class="flow-card-title">
+        Account record and referral code
+        <span class="badge badge-auto">Automatic, every account</span>
+      </div>
+      <p>Every FeeValt account gets a personal referral code and an entitlement record (Section 2), whether or not you ever refer anyone or make a purchase. This is stored in our database, Firestore.</p>
+    </div>
+
+    <div class="flow-card">
+      <div class="flow-card-title">
+        Referrals and purchases
+        <span class="badge badge-auto">Automatic, if you refer someone or buy something</span>
+      </div>
+      <p>If you refer another user, we store a record of that referral — who referred whom, and its status. If you make a purchase through FeeValt — your own or as part of completing a referral — Google Play shares a purchase confirmation and order reference with us, linked to your account identifier (not personal information Google collects on our behalf), so we can confirm the purchase and, where relevant, any referral reward tied to it. This applies to every purchase, not only ones involving a referral.</p>
+    </div>
+
+    <div class="flow-card">
+      <div class="flow-card-title">
+        Reward voucher notification email
+        <span class="badge badge-auto">Automatic, if a referral earns you a voucher</span>
+      </div>
+      <p>When a referral voucher is queued for you, a summary — the voucher amount, the reward email you provided, and an internal reference ID — is sent by automated email, through our mail provider Zoho Mail, to our own inbox so we can process it. This runs daily and resends until the voucher is processed, so our inbox may briefly hold more than one copy of the same entry. This is an operational email between our own systems, not marketing sent to you. It doesn't apply to the separate first-users promotion, which unlocks premium features directly rather than producing a voucher.</p>
     </div>
 
     <div class="flow-card">
@@ -283,8 +323,8 @@
         Firebase Analytics
         <span class="badge badge-auto">Automatic, aggregate</span>
       </div>
-      <p>FeeValt uses Firebase Analytics (a Google service) to understand how the app is used in aggregate. For example, how often the bundle-overlap feature finds a match, or how often a scanned invoice is successfully added. These events never include the name of a specific service you track or any content from your subscriptions. Most events carry no more than the fact that something happened, plus a category-level figure where relevant, such as your total annual savings. One exception worth naming directly: when you add a recharge plan, the event we log includes your telecom provider (for example, Airtel, Jio, or Vi) and your plan type. That's more specific than a pure aggregate figure, so we're calling it out rather than folding it into the general description above.</p>
-      <p>Separately from anything FeeValt's own code sends, Firebase automatically collects a standard set of technical events and attributes on every install, regardless of what you do in the app: things like first open, session start, app updates, app version, device model, OS version, and a coarse, non-precise geographic region derived from your IP address. This is standard behaviour for any app using Firebase, not something FeeValt configures or adds to. Firebase Analytics assigns an anonymous, device-level identifier to your installation to power all of this reporting; it is not linked to your name, email, or any other personal identifier, because FeeValt collects none of those in the first place.</p>
+      <p>FeeValt uses Firebase Analytics (a Google service) to understand how the app is used in aggregate. For example, how often the bundle-overlap feature finds a match, or how often a scanned invoice is successfully added. These events never include the name of a specific service you track or any content from your subscriptions, and they are not linked to your account, email, or Google identity — they're tied only to an anonymous, device-level installation ID. Most events carry no more than the fact that something happened, plus a category-level figure where relevant, such as your total annual savings. One exception worth naming directly: when you add a recharge plan, the event we log includes your telecom provider (for example, Airtel, Jio, or Vi) and your plan type. That's more specific than a pure aggregate figure, so we're calling it out rather than folding it into the general description above.</p>
+      <p>Separately from anything FeeValt's own code sends, Firebase automatically collects a standard set of technical events and attributes on every install, regardless of what you do in the app: things like first open, session start, app updates, app version, device model, OS version, and a coarse, non-precise geographic region derived from your IP address. This is standard behaviour for any app using Firebase, not something FeeValt configures or adds to.</p>
     </div>
 
     <div class="flow-card">
@@ -292,7 +332,7 @@
         Firebase Crashlytics
         <span class="badge badge-auto">Automatic, if the app crashes</span>
       </div>
-      <p>FeeValt uses Firebase Crashlytics to help us detect and fix crashes. If the app crashes, Crashlytics automatically sends a crash report containing technical diagnostic information such as device model, Android OS version, and the code location where the crash occurred, to help us diagnose and fix the issue. This report does not include your subscription or plan data, and is not linked to your name, email, or any other personal identifier.</p>
+      <p>FeeValt uses Firebase Crashlytics to help us detect and fix crashes. If the app crashes, Crashlytics automatically sends a crash report containing technical diagnostic information such as device model, Android OS version, and the code location where the crash occurred, to help us diagnose and fix the issue. This report does not include your subscription or plan data, and is not linked to your account, email, or Google identity.</p>
     </div>
 
     <div class="flow-card">
@@ -300,7 +340,7 @@
         Google Play Billing
         <span class="badge badge-auto">Automatic, every app launch</span>
       </div>
-      <p>Every time you open FeeValt, the app checks with Google Play to see whether you have any prior purchase to restore. It does this even though nothing is currently purchasable in the app; the check runs automatically in the background on every launch as part of how Android apps integrate with Google Play. This exchange happens directly between your device and Google Play and is governed by Google's own privacy policy.</p>
+      <p>Every time you open FeeValt, the app checks with Google Play to see whether you have any prior purchase to restore. This exchange happens directly between your device and Google Play and is governed by Google's own privacy policy. See "Referrals and purchases" above for what we store when you complete a purchase.</p>
     </div>
 
     <div class="flow-card">
@@ -328,7 +368,7 @@
       <li><strong>Notifications</strong>: to deliver renewal and expiry reminders you set up</li>
       <li><strong>Exact alarms</strong>: so reminders fire at the precise time you chose, not at an approximate window</li>
       <li><strong>Boot receiver</strong>: so scheduled reminders survive a device reboot</li>
-      <li><strong>Internet</strong>: for brand-logo lookups and, when you use it, invoice scanning via Gemini</li>
+      <li><strong>Internet</strong>: for account sign-in, brand-logo lookups, and, when you use it, invoice scanning via Gemini</li>
       <li><strong>Ignore battery optimisations</strong>: optional, user-triggered from Settings, needed on some Android OEMs (Xiaomi, Realme, Oppo, Vivo) that aggressively kill background processes and would otherwise block reminders</li>
     </ul>
     <p>FeeValt does not request location, camera, microphone, contacts, or broad storage permissions.</p>
@@ -347,23 +387,39 @@
     <h3>Manual export</h3>
     <p>You can export all your data at any time from Settings → "Save to Drive" or "Email backup to myself". The export is a JSON file you save or send wherever you choose. FeeValt does not upload it anywhere.</p>
 
+    <h3>Deleting your account</h3>
+    <p>Go to Settings → "Delete my account" to permanently delete your FeeValt account. You'll see a confirmation dialog — you don't need to sign in again, since the app already has your active, signed-in session.</p>
+    <p>Deleting your account:</p>
+    <ul>
+      <li>Removes your Google sign-in identity from Firebase Authentication (email, display name, profile photo)</li>
+      <li>Removes your reward email address, if you provided one</li>
+      <li>Clears all locally stored data on your device — the same data "Delete everything" removes, described below — and resets your device's premium and sign-in status</li>
+    </ul>
+    <p>The following is disconnected from your Google identity but retained for up to 90 days afterward, primarily to allow us to investigate potential abuse of the referral and reward system, after which it is permanently deleted:</p>
+    <ul>
+      <li>Your account's internal record — creation date, entitlement status, referral history. Your referral code is deactivated immediately, though the underlying record is kept for this period</li>
+      <li>Referral records connecting you to anyone you referred or were referred by</li>
+      <li>Purchase records, including a Google Play order reference, if you made a purchase</li>
+    </ul>
+    <p>If you were part of a referral where a reward to the other person hasn't yet been paid or refunded, the record of that referral may be retained slightly longer than 90 days, until that reward reaches a final state, so the other person isn't denied a reward they've earned because you deleted your account.</p>
+    <p>Reward vouchers paid out through your account are handled a little differently: rather than deleting the record entirely, we keep the amount, date, and status for our own bookkeeping, with the identifying link to your account removed after 90 days.</p>
+    <p>Two things this doesn't reach: reward voucher notification emails already sent to our own inbox (Section 3) aren't automatically deleted, since we have no way to recall an email once sent; and technical server logs, which include your internal account identifier but never your email, are kept under our cloud provider's standard logging retention for operational and security purposes. If you made a purchase through Google Play, Google separately retains its own transaction records under Google's privacy policy, independent of anything described here.</p>
+    <p>If you're unable to use the app — for example, you've already uninstalled it — contact us at <a href="mailto:care@feevalt.com">care@feevalt.com</a> and we'll process your account deletion manually.</p>
+
     <h3>Analytics and crash reporting are on by default</h3>
     <p>To be direct about this: FeeValt does not currently offer a toggle to turn off Firebase Analytics or Crashlytics. Both are active from your first launch, in every build, including for anyone doing testing or development. Uninstalling the app is currently the only way to stop this collection. We may add an in-app opt-out in a future update; if we do, this section will be updated to reflect it.</p>
 
-    <h3>Delete all data</h3>
-    <p>Settings → "Delete everything" removes all locally stored data from your device immediately: subscriptions, plans, savings history, spend history, lapsed-plan records, and all preferences. This action is permanent and cannot be undone.</p>
+    <h3>Delete all data (device only)</h3>
+    <p>Settings → "Delete everything" removes all locally stored data from your device immediately: subscriptions, plans, savings history, spend history, lapsed-plan records, and all preferences. Unlike account deletion above, this does not delete your FeeValt account or sign you out — it's useful if you want to reset your local data while continuing to use the app. This action is permanent and cannot be undone.</p>
 
     <h3>Uninstalling the app</h3>
-    <p>Uninstalling FeeValt removes all local data. If Android Auto Backup was enabled on your device, a copy may exist in your Google account; you can delete it through Android's backup settings.</p>
-
-    <h3>No account to delete</h3>
-    <p>Because FeeValt has no accounts or servers, there is nothing server-side to request deletion of. "Delete everything" in Settings is the complete data-removal mechanism.</p>
+    <p>Uninstalling FeeValt removes all local data but does not delete your account. If Android Auto Backup was enabled on your device, a copy of your local data may exist in your Google account; you can delete it through Android's backup settings. To delete your account itself, use "Delete my account" above, or contact us if you've already uninstalled the app.</p>
   </section>
 
-  <!-- 7. Advertising -->
+  <!-- 7. Purchases and monetisation -->
   <section>
-    <h2>7. Advertising and monetisation</h2>
-    <p>FeeValt is currently free with no active monetisation. There are no advertisements, no ad SDKs, and no data is sold or shared with advertisers or data brokers, now or ever. If paid features are introduced in a future update, this will be disclosed in advance in the app and on this page.</p>
+    <h2>7. Purchases and monetisation</h2>
+    <p>FeeValt may offer one-time or premium feature unlocks, processed through Google Play Billing as described in Sections 2 and 3. There are no advertisements, no ad SDKs, and we do not sell or share your data with advertisers or data brokers, now or ever. Any purchase you make is handled by Google Play under Google's own terms and privacy policy; we receive only a purchase confirmation linked to your account identifier, never your payment details, which we do not have access to.</p>
   </section>
 
   <!-- 8. Children's privacy -->
@@ -375,18 +431,20 @@
   <!-- 9. Data retention -->
   <section>
     <h2>9. Data retention</h2>
-    <p>All data is retained on your device for as long as you use the app or until you delete it. FeeValt holds no copies. There are no server-side retention schedules because there is no server.</p>
+    <p>Data stored only on your device (subscriptions, plans, savings history, and so on) is retained there for as long as you use the app or until you delete it — see Section 6.</p>
+    <p>Data tied to your account is handled separately. Your Google sign-in identity and reward email are retained for as long as your account exists, and removed immediately if you delete it. Referral and purchase records tied to your account are retained while your account is active and, if you delete your account, for up to 90 days afterward (longer in the specific case described in Section 6, where a reward owed to another user hasn't yet been resolved), then permanently deleted. Reward vouchers paid through your account are retained in anonymised form after that period, for bookkeeping, as described in Section 6. Reward voucher notification emails already sent to our own inbox, and our servers' technical logs, are retained on the schedules described in Sections 3 and 6, independent of account deletion.</p>
   </section>
 
   <!-- 10. Security -->
   <section>
     <h2>10. Security</h2>
-    <p>Your data is stored in an on-device local database (Hive CE). It is not encrypted at the application level. Security relies on Android's standard app sandbox, which restricts access to your data to FeeValt only. Because your data never leaves your device in normal use, the attack surface is limited to your physical device. For invoice scanning, the PDF is transmitted over HTTPS to our relay service and on to Google's API. We recommend keeping your device's operating system up to date.</p>
+    <p>Your on-device data is stored in a local database (Hive CE). It is not encrypted at the application level. Security relies on Android's standard app sandbox, which restricts access to your data to FeeValt only. Your account data is stored with Firebase (Google Cloud) and access to it is restricted by Firebase's security rules. For invoice scanning, the PDF is transmitted over HTTPS to our relay service and on to Google's API. We recommend keeping your device's operating system up to date.</p>
   </section>
 
   <!-- 11. Third-party services -->
   <section>
     <h2>11. Third-party services</h2>
+    <p>FeeValt's account, referral, and reward-notification features are built on Firebase Authentication, Firestore, and Cloud Functions (all part of Google Cloud, hosted in the asia-south1 region). Invoice scanning uses a separate Google Cloud Function (us-central1) that relays requests to Google's Gemini API. Reward voucher notifications are sent through Zoho Mail. These providers process data on our behalf under their own respective privacy and security terms; we don't sell or share your data with them beyond what's needed to operate FeeValt.</p>
     <p>FeeValt's app includes links to third-party websites (cancellation pages, provider recharge pages). Visiting those sites is subject to their own privacy policies. FeeValt is not responsible for the content or privacy practices of those sites.</p>
     <p>The FeeValt website is hosted on <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement" target="_blank" rel="noopener">GitHub Pages</a> (GitHub's privacy policy applies to hosting). The domain is managed via <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener">Cloudflare</a> (Cloudflare's privacy policy applies to DNS and network traffic).</p>
   </section>
