@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Delete your FeeValt account</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  /* Wallet tokens, so this page reads as FeeValt rather than as a
+     third-party form asking for a Google sign-in. Values from
+     lib/theme/layout_tokens.dart. */
+  :root {
+    --scaffold-bg: #EAEBED;
+    --surface:     #FFFFFF;
+    --surface2:    #F5F5F7;
+    --ink:         #191C22;
+    --ink2:        #6B6F78;
+    --ink3:        #9EA2AB;
+    --line:        rgba(25,28,34,.1);
+    --accent:      #E63B2E;
+    --accent-deep: #BF2D22;
+    --accent-soft: #FDECEA;
+    --cta-bg:      #15181F;
+    --cta-fg:      #FBF4EA;
+    --ok-soft:     #E8F5E9;
+    --ok-deep:     #1B5E20;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--scaffold-bg);
+    font-family: Inter, -apple-system, "Segoe UI", Roboto, sans-serif;
+    color: var(--ink); line-height: 1.6;
+    padding: 32px 16px 64px;
+  }
+  .wrap { max-width: 560px; margin: 0 auto; }
+  .brand { display: flex; align-items: center; gap: 9px; margin-bottom: 28px; }
+  .brand .tile {
+    width: 34px; height: 34px; border-radius: 10px;
+    background: linear-gradient(135deg, #D61F26 0%, #8B0F1A 55%, #2B0D12 100%);
+    display: flex; align-items: center; justify-content: center;
+    color: #fff; font-family: Archivo, sans-serif; font-weight: 800; font-size: 17px;
+  }
+  .brand .name {
+    font-family: Archivo, sans-serif; font-weight: 800; font-size: 22px;
+    letter-spacing: -.4px;
+  }
+  h1 { font-family: Archivo, sans-serif; font-weight: 800; font-size: 26px;
+       line-height: 1.2; margin: 0 0 14px; }
+  p { font-size: 16.5px; color: var(--ink2); margin: 0 0 16px; }
+  .card {
+    background: var(--surface); border-radius: 20px; padding: 20px;
+    box-shadow: 0 6px 36px -10px rgba(20,20,15,.08); margin-bottom: 20px;
+  }
+  .card h2 { font-size: 14px; font-weight: 700; letter-spacing: .8px;
+             text-transform: uppercase; margin: 0 0 12px; color: var(--accent-deep); }
+  .card.keep h2 { color: var(--ink2); }
+  ul { margin: 0; padding-left: 20px; font-size: 16.5px; color: var(--ink2); }
+  li { margin-bottom: 7px; }
+  li b { color: var(--ink); font-weight: 600; }
+  button {
+    width: 100%; height: 56px; border: none; border-radius: 14px;
+    background: var(--cta-bg); color: var(--cta-fg);
+    font-family: Inter, sans-serif; font-size: 16.5px; font-weight: 600;
+    display: flex; align-items: center; justify-content: center; gap: 12px;
+    cursor: pointer; box-shadow: 0 14px 56px -12px rgba(21,24,32,.5);
+  }
+  button[disabled] { opacity: .55; cursor: default; }
+  button.danger { background: var(--accent); box-shadow: none; color: #fff; }
+  .gwrap { width: 20px; height: 20px; background: #fff; border-radius: 2px;
+           display: flex; align-items: center; justify-content: center; }
+  .note { font-size: 14px; color: var(--ink3); text-align: center; margin-top: 14px; }
+  .banner { border-radius: 13px; padding: 14px; margin-bottom: 20px; font-size: 15px; }
+  .banner.err { background: var(--accent-soft); color: var(--ink); }
+  .banner.err b { color: var(--accent-deep); display: block; margin-bottom: 2px; }
+  .banner.ok { background: var(--ok-soft); color: var(--ink); }
+  .banner.ok b { color: var(--ok-deep); display: block; margin-bottom: 2px; }
+  .who { font-size: 15px; color: var(--ink2); text-align: center; margin-bottom: 14px; }
+  .who b { color: var(--ink); }
+  .hidden { display: none !important; }
+  a { color: var(--ink2); }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="brand"><div class="tile">F</div><div class="name">FeeValt</div></div>
+
+  <h1>Delete your FeeValt account</h1>
+  <p>
+    You can delete your account here without installing the app. Sign in with the Google
+    account you use for FeeValt, and we will remove it straight away. This cannot be undone.
+  </p>
+
+  <div id="banner" class="banner hidden"></div>
+
+  <div class="card">
+    <h2>What gets deleted</h2>
+    <ul>
+      <li><b>Your sign-in</b> — your FeeValt account is removed and you will not be able to
+        sign in with it again.</li>
+      <li><b>Your reward email</b> — the address any referral voucher would have been sent
+        to.</li>
+    </ul>
+    <p><b>The data on your phone is not cleared by deleting your account here.</b> Your
+      subscriptions, recharge plans, savings history and settings stay on the phone as they
+      are. The next time you open FeeValt, it carries on with a new account that is not
+      linked to your Google account, still holding that same data. To clear what's on your
+      phone too, open FeeValt and use <b>Settings → Delete all my Data</b>, or uninstall
+      the app.</p>
+  </div>
+
+  <div class="card keep">
+    <h2>What we keep, and why</h2>
+    <ul>
+      <li><b>Referral, purchase and reward records, for up to 90 days</b> — kept after
+        your account is deleted, primarily so we can investigate potential abuse of the
+        referral and reward system, then permanently deleted. They can no longer be linked
+        back to a sign-in once your account is gone.</li>
+      <li><b>A referral whose reward is still unpaid</b> — if you were part of a referral
+        where a reward to the other person hasn't yet been paid or refunded, the record of
+        that referral may be kept slightly longer than 90 days, until that reward reaches a
+        final state.</li>
+      <li><b>Reward vouchers paid out through your account</b> — not deleted outright. We
+        keep the amount, date and status for our own bookkeeping, with the link to your
+        account removed after 90 days.</li>
+      <li><b>Purchase history</b> held by Google Play. Deleting your FeeValt account does not
+        cancel a purchase or request a refund — for that, contact Google Play.</li>
+    </ul>
+  </div>
+
+  <!-- Step 1 -->
+  <div id="step-signin">
+    <button id="btn-signin">
+      <span class="gwrap">
+        <svg width="18" height="18" viewBox="0 0 48 48" aria-hidden="true">
+          <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
+          <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
+          <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
+          <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
+        </svg>
+      </span>
+      Sign in with Google
+    </button>
+    <p class="note">We only use this to confirm it is your account.</p>
+  </div>
+
+  <!-- Step 2 -->
+  <div id="step-confirm" class="hidden">
+    <p class="who">Signed in as <b id="who-email"></b></p>
+    <button id="btn-delete" class="danger">Permanently delete my account</button>
+    <p class="note"><a href="#" id="btn-cancel">Cancel and sign out</a></p>
+  </div>
+
+  <p class="note" style="margin-top:28px">
+    Questions? <a href="mailto:care@feevalt.com">care@feevalt.com</a> ·
+    <a href="/privacy/">Privacy Policy</a>
+  </p>
+</div>
+
+<script type="module">
+// ─────────────────────────────────────────────────────────────────────────────
+// The FeeValt Firebase Web app's config (Firebase Console -> Project settings
+// -> Your apps -> Web app), registered in entry [369]. feevalt.com is in
+// Firebase Auth's authorized domains (checked 2026-09-30). Sign-in goes
+// through authDomain's /__/auth/handler, so the OAuth exchange runs on
+// feevalt.firebaseapp.com rather than on this page's origin.
+//
+// These values are public identifiers, not secrets — a Firebase web API key
+// identifies the project, it does not authorise anything on its own. Access is
+// decided by the security rules and by the callable's own auth check.
+// ─────────────────────────────────────────────────────────────────────────────
+const FIREBASE_CONFIG = {
+  apiKey:            'AIzaSyBZZHFNHyMFWGb_nbxK7-tWpmpsz5EIzhs',
+  authDomain:        'feevalt.firebaseapp.com',
+  projectId:         'feevalt',
+  appId:             '1:912700668977:web:1d2298db5e9b019523e910',
+  messagingSenderId: '912700668977',
+};
+
+// Must match setGlobalOptions({region}) in functions/index.js. A callable
+// invoked against the wrong region fails with a bare `not-found` that reads
+// exactly like a function that was never deployed.
+const REGION = 'asia-south1';
+
+import {initializeApp} from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js';
+import {
+  getAuth, GoogleAuthProvider, signInWithPopup, signOut,
+} from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js';
+import {
+  getFunctions, httpsCallable,
+} from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-functions.js';
+
+const app  = initializeApp(FIREBASE_CONFIG);
+const auth = getAuth(app);
+const fns  = getFunctions(app, REGION);
+
+const el = (id) => document.getElementById(id);
+const banner = el('banner');
+
+function show(kind, title, body) {
+  banner.className = `banner ${kind}`;
+  banner.innerHTML = `<b></b><span></span>`;
+  banner.querySelector('b').textContent = title;
+  banner.querySelector('span').textContent = body;
+}
+function clearBanner() { banner.className = 'banner hidden'; }
+
+el('btn-signin').addEventListener('click', async () => {
+  clearBanner();
+  const btn = el('btn-signin');
+  btn.disabled = true;
+  try {
+    const provider = new GoogleAuthProvider();
+    const cred = await signInWithPopup(auth, provider);
+    el('who-email').textContent = cred.user.email || cred.user.uid;
+    el('step-signin').classList.add('hidden');
+    el('step-confirm').classList.remove('hidden');
+  } catch (err) {
+    // popup-closed-by-user is a choice, not a fault — say nothing about it
+    // beyond letting them try again.
+    if (err && err.code === 'auth/popup-closed-by-user') {
+      btn.disabled = false;
+      return;
+    }
+    // The configuration errors are the likely ones before the console work in
+    // README.md is done, and they are OUR problem, not the visitor's.
+    const config = err && (
+      err.code === 'auth/unauthorized-domain' ||
+      err.code === 'auth/operation-not-allowed' ||
+      err.code === 'auth/invalid-api-key');
+    show('err',
+      config ? 'Sign-in is not available right now'
+             : 'We could not sign you in',
+      config ? 'This is a problem on our side, not yours. Please email '
+             + 'care@feevalt.com and we will delete your account for you.'
+             : 'Please check your connection and try again.');
+    btn.disabled = false;
+  }
+});
+
+el('btn-cancel').addEventListener('click', async (e) => {
+  e.preventDefault();
+  await signOut(auth).catch(() => {});
+  el('step-confirm').classList.add('hidden');
+  el('step-signin').classList.remove('hidden');
+  el('btn-signin').disabled = false;
+  clearBanner();
+});
+
+el('btn-delete').addEventListener('click', async () => {
+  clearBanner();
+  const btn = el('btn-delete');
+  btn.disabled = true;
+  btn.textContent = 'Deleting…';
+  try {
+    await httpsCallable(fns, 'deleteAccount')();
+    // The account is gone. Sign out locally so the page is not holding a
+    // token for a user that no longer exists.
+    await signOut(auth).catch(() => {});
+    el('step-confirm').classList.add('hidden');
+    show('ok', 'Your account has been deleted',
+      'Your FeeValt sign-in and reward email have been removed. The data on '
+      + 'your phone is not affected: to clear it, use Settings → Delete all '
+      + 'my Data in the app, or uninstall FeeValt.');
+  } catch (err) {
+    // Nothing is deleted unless the call succeeded — the function does the
+    // Firestore redaction before removing the sign-in identity, so a failure
+    // leaves the account intact and retryable.
+    show('err', 'We could not delete your account',
+      'Nothing has been deleted. Please try again, or email care@feevalt.com.');
+    btn.disabled = false;
+    btn.textContent = 'Permanently delete my account';
+  }
+});
+</script>
+</body>
+</html>
